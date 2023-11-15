@@ -1,8 +1,29 @@
 class BooksController < ApplicationController
   def new
-    @post_image = PostImage.new
+    @book = Book.new
   end
 
   def create
+    @book = Book.new(book_params)
+    @book.user_id = current_user.id
+    @book.save
+    redirect_to books_path
   end
+
+  def index
+  end
+
+  def show
+  end
+
+  def edit
+  end
+
+  #投稿データのストロングラパラメータ
+  private
+
+  def book_params
+    params.require(:book).permit(:shop_name, :image, :caption)
+  end
+
 end
