@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
-    @books = @user.books
+    @books = @user.books.page(params[:page])
     #アソシエーションを持っているモデル同士の記述
     #個人が投稿した全てを表示できる
   end

@@ -1,6 +1,7 @@
 class BooksController < ApplicationController
   def new
     @book = Book.new
+    @books = Book.page(params[:page])
   end
 
   def create
@@ -11,6 +12,7 @@ class BooksController < ApplicationController
   end
 
   def index
+    @books = Book.paginate(page: params[:page], per_page: 10)
   end
 
   def show
