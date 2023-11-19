@@ -4,7 +4,7 @@
     <title>Bookers2</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    
+
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
         <script src="https://kit.fontawesome.com/1084fc60d7.js" crossorigin="anonymous"></script>
@@ -45,8 +45,8 @@
           <i class="fa-solid fa-sign-out-alt"></i>Log out
          <% end %>
         </li>
-        
-        
+
+
       <% else %>
         <li>
           <%= link_to root_path, style: "color: white; text-decoration: none;" do %>
@@ -65,7 +65,7 @@
           <% end %>
         </li>
         <li>
-          <%=link_to new_user_registration_path, style: "color: white; text-decoration: none;" do %>
+          <%=link_to new_user_session_path, style: "color: white; text-decoration: none;" do %>
           <i class="fa-solid fa-home"></i>Log in
           <% end %>
         </li>
