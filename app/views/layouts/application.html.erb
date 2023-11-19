@@ -2,9 +2,9 @@
 <html>
   <head>
     <title>Bookers2</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
         <script src="https://kit.fontawesome.com/1084fc60d7.js" crossorigin="anonymous"></script>
@@ -26,44 +26,46 @@
       <ul class="navbar-nav ml-auto">
         <li>
         <% if user_signed_in? %>
-          <%= link_to book_path(current_user.id) do %>
+          <%= link_to user_path(current_user.id), style: "color: white; text-decoration: none;" do %>
           <i class="fa-solid fa-home"></i>Home
           <% end %>
         </li>
         <li>
-          <%= link_to users_path do %>
+          <%= link_to users_path, style: "color: white; text-decoration: none;" do %>
           <i class="fa-solid fa-users"></i>Users
           <% end %>
         </li>
         <li>
-          <%= link_to books_path do %>
+          <%= link_to books_path(current_user.id), style: "color: white; text-decoration: none;" do %>
           <i class="fa-solid fa-book-open"></i>Books
           <% end %>
         </li>
         <li>
-          <%= link_to destroy_user_session_path, method: :delete do %>
+          <%= link_to destroy_user_session_path, method: :delete, style: "color: white; text-decoration: none;" do %>
           <i class="fa-solid fa-sign-out-alt"></i>Log out
          <% end %>
         </li>
+        
+        
       <% else %>
         <li>
-          <%= link_to root_path do %>
+          <%= link_to root_path, style: "color: white; text-decoration: none;" do %>
           <i class="fa-solid fa-home"></i>
             Home
           <% end %>
         </li>
         <li>
-          <%= link_to homes_about_path do %>
+          <%= link_to homes_about_path, style: "color: white; text-decoration: none;" do %>
           <i class="fa-solid fa-link"></i>about
           <% end %>
         </li>
         <li>
-          <%=link_to new_user_registration_path do %>
+          <%=link_to new_user_registration_path, style: "color: white; text-decoration: none;" do %>
           <i class="fa-solid fa-user-plus"></i>Sign up
           <% end %>
         </li>
         <li>
-          <%=link_to new_user_session_path do %>
+          <%=link_to new_user_registration_path, style: "color: white; text-decoration: none;" do %>
           <i class="fa-solid fa-home"></i>Log in
           <% end %>
         </li>
