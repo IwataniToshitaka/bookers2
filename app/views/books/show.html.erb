@@ -1,52 +1,59 @@
-<div>
-  <h2>User info</h2>
+<div class="col-md-8 offset-md-1">
+    <h2>User info</h2>
+  <div class="container">
+  <div class="row">
+
   <div>
     <%= image_tag @user.get_profile_image(100,100) %>
   </div>
   <tbody>
     <tr>
       <th>name</th>
-      <th><%= @user.name %></th><br>
+      <th><%= @user.name %></th>
     </tr>
     <tr>
       <th>introduction</th>
       <th><%= @user.introduction %></th>
     </tr>
+  </div>
   </tbody>
-</div>
+  </div>
 <i>
   <%= link_to edit_user_path(current_user.id) do %>
     <i class="fas fa-user-cog"></i>
   <% end %>
 </i>
-
 <h2 class="mt-3">New book</h2>
 <%= form_with model: Book.new do |f| %>
-  <h4>title</h4>
+  <h4>Title</h4>
   <%= f.text_field :title %>
 
-  <h4>opinion</h4>
-  <%= f.text_area :body %><br>
+  <h4>Opinion</h4>
+  <%= f.text_area :body %>
 
   <%= f.submit 'Create Book' %>
 <% end %>
-
-
-<span>
-    <%= link_to "book", book_path(@book.id) %>
-</span>
-
-<h2>Book detail</h2>
-<div>
-  <%= image_tag @user.get_profile_image(100,100) %>
 </div>
-<tbody>
-  <tr>
-    <th>name</th>
-    <th><%= @user.name %></th><br>
+<div class="col-md-8 offset-md-1">
+    <h2>Book detail</h2>
+<table class="table table-hover table-inverse">
+<thead>
+	<tr>
+	 <th><%= image_tag @book.user.get_profile_image(80,80) %></th>
+	 <th><%= link_to @book.title, book_path(@book) %></th>
+	 <th><%= @book.body %></th>
+ 	 <th><%= link_to "Edit", edit_book_path(@book) %></th>
+	 <th><%= link_to "Destroy", book_path(@book), method: :delete, "data-confirm" => "本当に削除しますか？" %></td>
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+	 <th><%= link_to @book.user.name, user_path(@book.user) %></th>
   </tr>
-  <tr>
-    <th>introduction</th>
-    <th><%= @user.introduction %></th>
-  </tr>
-</tbody>
+  </tbody>
+</table>
+</div>
+
+
+<!--すべての投稿をループ表示させる場合は-->
+<!--% @books.each do |book| %-->
