@@ -4,6 +4,7 @@ class UsersController < ApplicationController
     @books = @user.books.page(params[:page])
     #アソシエーションを持っているモデル同士の記述
     #個人が投稿した全てを表示できる
+
   end
 
   def edit
@@ -12,6 +13,8 @@ class UsersController < ApplicationController
   end
 
   def index
+  @users = User.all
+  @books = Book.all
   end
 
 
