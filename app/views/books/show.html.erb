@@ -1,5 +1,3 @@
-<h1>ここがホントのbooks/show</h1>
-
 <div>
   <h2>User info</h2>
   <div>
@@ -33,10 +31,9 @@
   <%= f.submit 'Create Book' %>
 <% end %>
 
-<h1>ここがホントのbooks/show</h1>
 
 <span>
-    <%= link_to book, book_path(book.id) %>
+    <%= link_to "book", book_path(@book.id) %>
 </span>
 
 <h2>Book detail</h2>
