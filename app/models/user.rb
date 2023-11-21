@@ -4,10 +4,13 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-
-
   has_one_attached :profile_image
   has_many :books, dependent: :destroy
+
+  validates :name, presence: true, length: { minimum: 2, maximum: 20}
+  validates :name, presence: true, uniqueness: true
+  #バリデーションを使用して、一意性を条件に追加。同じnameのユーザは登録できないようにした
+  validates :introduction, presence: true, length: { maximum: 50}
 
   def get_profile_image(width, height)
     unless profile_image.attached?
