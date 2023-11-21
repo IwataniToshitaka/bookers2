@@ -1,23 +1,30 @@
+<div class="col-md-8 offset-md-1">
+  <div class="container">
+  <div class="row">
+
 <% @users.each do |user| %>
   <% if user == current_user %>
     <div>
       <h2>User info</h2>
       <div>
         <%= image_tag user.get_profile_image(100, 100) %><br>
-        <tbody>
-          <tr>
-            <th>name</th>
-            <th><%= user.name %></th>
-          </tr>
-          <tr>
-            <th>introduction</th>
-            <th><%= user.introduction %></th>
-          </tr>
-        </tbody>
       </div>
-    </div>
+    <table>
+    <tbody>
+      <tr>
+        <th>name</th>
+        <th><%= user.name %></th>
+      </tr>
+      <tr>
+        <th>introduction</th>
+        <th><%= user.introduction %></th>
+      </tr>
+    </tbody>
+    </table>
   <% end %>
 <% end %>
+
+
 <i>
   <%= link_to edit_user_path(current_user.id) do %>
   <i class="fas fa-user-cog"></i>
@@ -36,10 +43,11 @@
 </div>
 
 
-<%= form_with model: @user do |f| %>
+
     <div class="col-md-8 offset-md-1">
-    <table class="table table-hover table-inverse">
-    <h2>Users</h2>
+      <h2>Users</h2>
+      <table class="table table-hover table-inverse">
+    <%= form_with model: @user do |f| %>
   <thead>
     <tr>
       <th></th>
@@ -48,20 +56,19 @@
       <th colspan="3"></th>
     </tr>
   </thead>
-
   <tbody>
     <tr>
     <% @books.each do |book| %>
 
-    <th>
-      <%= image_tag book.user.get_profile_image(100,100) %><br>
-    </th>
-    <th>
-      <%= book.user.name %>
-    </th>
-        <th><%= link_to "show", user_path(current_user.id) %></th>
-      </tr>
-    </tbody>
+    <td><%= image_tag book.user.get_profile_image(100,100) %></td>
+    <td><%= book.user.name %></td>
+    <td><%= link_to "show", user_path(current_user.id) %></td>
+    </tr>
     <% end %>
-  </div>
 <% end %>
+    </tbody>
+      </table>
+        </div>
+        </div>
+          </div>
+            </div>

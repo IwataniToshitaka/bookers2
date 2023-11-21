@@ -2,7 +2,7 @@
 
 <%= form_with model: @user, url: user_registration_path do |f| %>
   <%= f.label :name %><br />
-  <%= f.password_field :name, autocomplete: "current-Name" %>
+  <%= f.text_field :name, autocomplete: "current-Name" %>
   </div>
 
   <div class="field">
