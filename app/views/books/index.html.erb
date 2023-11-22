@@ -29,9 +29,8 @@
   <%= form_with model: Book.new do |f| %>
     <h4>title</h4>
   <%= f.text_field :title %>
-
     <h4>opinion</h4>
-  <%= f.text_area :body %><br>
+  <%= f.text_area :body %><br/>
 
   <%= button_tag type: "submit",class: "btn btn-success",style: "color: white; width: 100px" do %>CreateBook
 <% end %>
