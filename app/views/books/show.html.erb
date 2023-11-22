@@ -31,7 +31,7 @@
     <h4>Opinion</h4>
   <%= f.text_area :body %><br/>
 
-  <%= button_tag type: "submit",class: "btn btn-success",style: "color: white; width: 100px" do %>CreateBook
+  <%= button_tag type: "submit",class: "btn btn-success",style: "color: white; width: 120px" do %>Create Book
 <% end %>
 <% end %>
 </div>
@@ -42,7 +42,7 @@
     <thead></thead>
     <tbody>
   <tr>
-    <td><%= image_tag @book.user.get_profile_image(100,100) %></td>
+    <td><%= link_to image_tag @book.user.get_profile_image(100,100) %></td>
   	<td><%= link_to @book.title, book_path(@book) %></td>
   	<td><%= @book.body %></td>
  	  <td><%= link_to "Edit", edit_book_path(@book) %></td>

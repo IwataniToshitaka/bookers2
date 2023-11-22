@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
+  #before_action :require_login
 
   def after_sign_in_path_for(resource)
     user_path(current_user.id)
@@ -9,6 +10,13 @@ class ApplicationController < ActionController::Base
     root_path
   end
 
+  private
+
+ # def require_login
+ #   if session[:user_id].nil?
+ #     redirect_to user_session_path
+ #   end
+ # end
 
   protected
 
@@ -16,5 +24,4 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:email])
     #サインアップした時のemailをパラメータとして登録する
   end
-
 end
