@@ -32,6 +32,14 @@ class BooksController < ApplicationController
     redirect_to books_path
   end
 
+  def update
+    book = Book.find(params[:id])
+    book.update(book_params)
+    flash[:notice] = "You have updated book successfully." #updateアクションが成功したら遷移先画面でコメント表示
+    redirect_to book_path(book.id)
+  end
+
+
   #投稿データのストロングラパラメータ
   private
 

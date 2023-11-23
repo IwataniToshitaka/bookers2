@@ -21,6 +21,7 @@ before_action :is_matching_login_user, only: [:edit, :update]
   def update
     @user = User.find(params[:id])
     @user.update(user_params)
+    flash[:notice] = "You have updated book successfully."
     redirect_to user_path
   end
 
