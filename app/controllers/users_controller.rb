@@ -1,15 +1,11 @@
 class UsersController < ApplicationController
+before_action :is_matching_login_user, only: [:edit, :update]
+
   def show
     @user = User.find(params[:id])
     @books = @user.books.page(params[:page])
     #アソシエーションを持っているモデル同士の記述
     #個人が投稿した全てを表示できる
-
-  end
-
-  def edit
-    @user = User.find(params[:id])
-    #特定の呼び出し
   end
 
   def index
@@ -17,6 +13,10 @@ class UsersController < ApplicationController
   @books = Book.all
   end
 
+  def edit
+    @user = User.find(params[:id])
+    #特定の呼び出し
+  end
 
   def update
     @user = User.find(params[:id])
@@ -28,6 +28,13 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :profile_image, :introduction)
+  end
+
+  def is_matching_login_user
+    user = User.find(params[:id]) #ユーザID(URL)を持ってくる
+    unless user.id == current_user.id #ユーザID(URL)がログインIDと異なれば
+      redirect_to user_path(current_user.id) #遷移させず指定のページへリダイレクトする
+    end
   end
 
 end

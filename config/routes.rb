@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: 'homes#top', as: 'root'
-  get 'home/about' => 'homes#index'
+  get 'home/about' => 'homes#about'
   #home/aboutのURLに飛んだ時、homesコントローラのindexアクションを実行
   resources :books, only: [:new, :create, :index, :edit, :show, :destroy]
   resources :users, only: [:show, :edit, :index, :update]
