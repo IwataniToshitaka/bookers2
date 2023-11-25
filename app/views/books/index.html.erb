@@ -1,6 +1,6 @@
-<div class="col-md-3 offset-md-1">
 <div class="container">
 <div class="row">
+<div class="col-md-3 offset-md-1">
 
   <% if @book.errors.any? %>
   <ul>
@@ -14,20 +14,20 @@
   <div>
     <h2>User info</h2>
   <div>
-    <%= image_tag @user.get_profile_image(100,100) %>
+    <%= image_tag @user.get_profile_image(100,100) %><br/>
   </div>
-  <table>
+    <table>
     <tbody>
-  <tr>
-	  <th>name</th>
-	  <th><%= @user.name %></th>
-  </tr>
-  <tr>
-	  <th>introduction</th>
-	  <th><%= @user.introduction %></th>
-  </tr>
-</tbody>
-</table>
+      <tr>
+	    <th>name</th>
+	    <th><%= @user.name %></th>
+    </tr>
+    <tr>
+	    <th>introduction</th>
+	    <th><%= @user.introduction %></th>
+    </tr>
+    </tbody>
+    </table>
 
 
 <% if current_user.id == @user.id %>
@@ -46,9 +46,10 @@
   <%= button_tag type: "submit",class: "btn btn-success",style: "color: white; width: 120px" do %>Create Book
 <% end %>
 <% end %>
+  </div>
 </div>
 
-  <div class="col-md-8 offset-md-1">
+  <div class="col-md-8">
     <h2>Books</h2>
     <table class="table table-hover table-inverse">
   <thead>
@@ -73,7 +74,6 @@
   <% end %>
   </tbody>
   </table>
-    </div>
   </div>
 </div>
 
