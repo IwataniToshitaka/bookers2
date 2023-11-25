@@ -5,15 +5,34 @@ class BooksController < ApplicationController
   end
 
   def create
+    @user = current_user #currentuserのすべての情報を@userへ
+    @books = Book.all
     @book = Book.new(book_params)
     @book.user_id = current_user.id
-    @book.save
-    redirect_to books_path(@book)
+    if @book.save
+    flash[:notice] = "Book created successfully."
+    redirect_to book_path(@book)
+    else
+    flash[:notice] = "Validation error: Please check the input."
+    render :index #このアクション内に定義要
+    end
+  end
+
+  def update
+    book = Book.find(params[:id])
+    if book.update(book_params)
+    flash[:notice] = "You have updated book successfully." #updateアクションが成功したら遷移先画面でコメント表示
+    redirect_to book_path(book.id)
+    else
+    flash[:notice] = "Validation error: Please check the input."
+    render 'edit'
+    end
   end
 
   def index
     @books = Book.all
     @user = current_user
+    @book = Book.new
   end
 
   def show
@@ -24,6 +43,9 @@ class BooksController < ApplicationController
 
   def edit
     @book = Book.find(params[:id])
+    if current_user.id != @book.user.id
+      redirect_to books_path()
+    end
   end
 
   def destroy
@@ -31,14 +53,6 @@ class BooksController < ApplicationController
     book.destroy
     redirect_to books_path
   end
-
-  def update
-    book = Book.find(params[:id])
-    book.update(book_params)
-    flash[:notice] = "You have updated book successfully." #updateアクションが成功したら遷移先画面でコメント表示
-    redirect_to book_path(book.id)
-  end
-
 
   #投稿データのストロングラパラメータ
   private

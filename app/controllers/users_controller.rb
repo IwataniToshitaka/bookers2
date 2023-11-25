@@ -9,6 +9,8 @@ before_action :is_matching_login_user, only: [:edit, :update]
   end
 
   def index
+  @book = 
+  @user = current_user
   @users = User.all
   @books = Book.all
   end
@@ -20,9 +22,13 @@ before_action :is_matching_login_user, only: [:edit, :update]
 
   def update
     @user = User.find(params[:id])
-    @user.update(user_params)
-    flash[:notice] = "You have updated book successfully."
-    redirect_to user_path
+   if @user.update(user_params)
+     flash[:notice] = "You have updated book successfully."
+     redirect_to user_path
+   else
+     flash[:notice] = "Validation error: Please check the input."
+     render 'edit'
+   end
   end
 
   private

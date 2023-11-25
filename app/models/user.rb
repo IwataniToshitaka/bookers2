@@ -7,8 +7,8 @@ class User < ApplicationRecord
   has_one_attached :profile_image
   has_many :books, dependent: :destroy
 
-  validates :name, presence: true, length: { minimum: 2, maximum: 20}
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true, uniqueness: true, length: { minimum: 2, maximum: 20}
+  validates :introduction, length: { maximum: 50}
   #バリデーションを使用して、一意性を条件に追加。同じnameのユーザは登録できないようにした
 
 

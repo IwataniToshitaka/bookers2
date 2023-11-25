@@ -1,6 +1,15 @@
-<div class="col-md-8 offset-md-1">
+<div class="col-md-3 offset-md-1">
 <div class="container">
 <div class="row">
+
+  <% if @book.errors.any? %>
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+  <% end %>
+
 
   <div>
     <h2>User info</h2>
@@ -21,9 +30,11 @@
 </table>
 
 
-  <%= link_to edit_user_path(current_user.id), style:"width: 200px; background-color:white; border: 1px solid gray;", class:"btn btn-primary" do %>
-  <i class="fas fa-user-cog" style="color: gray;"></i>
+<% if current_user.id == @user.id %>
+  <%= link_to edit_user_path(@user.id), style:"width: 200px; background-color:white; border: 1px solid gray;", class:"btn btn-primary" do %>
+    <i class="fas fa-user-cog" style="color: gray;"></i>
   <% end %>
+<% end %>
 
     <h2 class="mt-3">New book</h2>
   <%= form_with model: Book.new do |f| %>
@@ -51,7 +62,7 @@
   <tbody>
   <tr>
   <% @books.each do |book| %>
-  <td><%= link_to book_path(book) do %>
+  <td><%= link_to book_path(book.user_id) do %>
       <%= image_tag book.user.get_profile_image(100, 100) %>
       <% end %>
     <!--ブロック変数使ってるからこの中のuserはローカルでok-->
