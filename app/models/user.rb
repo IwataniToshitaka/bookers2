@@ -9,6 +9,7 @@ class User < ApplicationRecord
 
   validates :name, presence: true, uniqueness: true, length: { minimum: 2, maximum: 20}
   validates :introduction, length: { maximum: 50}
+  #validates :profile_image, presence: true
   #バリデーションを使用して、一意性を条件に追加。同じnameのユーザは登録できないようにした
 
 
