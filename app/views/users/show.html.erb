@@ -53,7 +53,12 @@
     <tbody>
     <% @books.each do |book| %>
 	<tr>
-	 <td><%= image_tag book.user.get_profile_image(100,100) %></td>
+	<td>
+    <%= link_to user_path(book.user.id) do %>
+    <!--リンク先が誤っていた。railsの仕様上、()指定がなかった場合、現状のページを参照するため書く必要は無いがRspecと併せるとこの書き方-->
+      <%= image_tag book.user.get_profile_image(100, 100) %>
+  <% end %>
+  </td>
 	 <td><%= link_to book.title, book_path(book) %></td>
 	 <td><%= book.body %></td>
   </tr>

@@ -6,10 +6,11 @@ before_action :is_matching_login_user, only: [:edit, :update]
     @books = @user.books.page(params[:page])
     #アソシエーションを持っているモデル同士の記述
     #個人が投稿した全てを表示できる
+    #@other_user = User.find(params[:id])
   end
 
   def index
-  @book = 
+  @book =
   @user = current_user
   @users = User.all
   @books = Book.all
